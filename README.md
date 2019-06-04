@@ -1,5 +1,6 @@
 # tencentyun/image-php-sdk-v2.0
-[腾讯云](https://cloud.tencent.com) 人工智能图像识别 SDK for PHP
+[腾讯云](https://cloud.tencent.com) 人工智能图像识别 SDK for PHP  本人集合了图像识别sdk和API中心的接口源码   
+源码均来自于腾迅的SDK！！！
 
 ## 安装（直接下载源码集成）
 
