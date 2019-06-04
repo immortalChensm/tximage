@@ -1,6 +1,8 @@
 {
     "name": "immportalchensm/tximage",
+    "type": "library",
     "description": "腾迅图像库",
+    "keywords" : ["腾迅sdk", "图像识别","腾迅API中心"],
     "license": "MIT",
     "authors": [
         {
