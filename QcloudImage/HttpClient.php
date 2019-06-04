@@ -88,17 +88,17 @@ class HttpClient {
             curl_setopt($this->curlHandler, CURLOPT_POSTFIELDS, $request['data']);
         $ssl = substr($request['url'], 0, 8) == "https://" ? true : false;
         if (isset($request['cert'])) {
-            curl_setopt($this->curlHandler, CURLOPT_SSL_VERIFYPEER,true);
+            curl_setopt($this->curlHandler, CURLOPT_SSL_VERIFYPEER,false);
             curl_setopt($this->curlHandler, CURLOPT_CAINFO, $request['cert']);
-            curl_setopt($this->curlHandler, CURLOPT_SSL_VERIFYHOST,2);
+            curl_setopt($this->curlHandler, CURLOPT_SSL_VERIFYHOST,false);
             if (isset($request['ssl_version'])) {
                 curl_setopt($this->curlHandler, CURLOPT_SSLVERSION, $request['ssl_version']);
             } else {
                 curl_setopt($this->curlHandler, CURLOPT_SSLVERSION, 4);
             }
         } else if ($ssl) {
-            curl_setopt($this->curlHandler, CURLOPT_SSL_VERIFYPEER,true);
-            curl_setopt($this->curlHandler, CURLOPT_SSL_VERIFYHOST,2);
+            curl_setopt($this->curlHandler, CURLOPT_SSL_VERIFYPEER,false);
+            curl_setopt($this->curlHandler, CURLOPT_SSL_VERIFYHOST,false);
             if (isset($request['ssl_version'])) {
                 curl_setopt($this->curlHandler, CURLOPT_SSLVERSION, $request['ssl_version']);
             } else {

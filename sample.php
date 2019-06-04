@@ -1,12 +1,13 @@
 <?php
 
-require_once __DIR__ . '/index.php';
+require_once 'vendor/autoload.php';
+
 use QcloudImage\CIClient;
 
-$appid = 'YOUR_APPID';
-$secretId = 'YOUR_SECRETID';
-$secretKey = 'YOUR_SECRETKEY';
-$bucket = 'YOUR_BUCKET';
+$appid = '1258883738';
+$secretId = 'AKIDKRJyOZ4BcsuiId7ZhZCaicN0OYT8d3LN';
+$secretKey = '1pOincCYfbHkyyjGZdZGjyylJdllY8Ua';
+$bucket = 'chatapp-1258883738';
 
 $client = new CIClient($appid, $secretId, $secretKey, $bucket);
 

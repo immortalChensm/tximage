@@ -238,3 +238,86 @@
 ```php
 	var_dump ($client->faceIdCardLiveDetectFour($validate_data, array('file'=>'F:\pic\ZOE_0171.mp4'), 'xxxxxxxxxxx', 'xxxxxxxxxxx'));
 ```
+#### 本扩展包集合了tencent Cloud SDK   
+    [具体链接](https://cloud.tencent.com/document/api/1007/33848)  
+    以下是我自己测试的两个接口   
+```php  
+    //身份证认证测试源码   
+    <?php
+    /**
+     * Created by PhpStorm.
+     * User: 1655664358@qq.com
+     * Date: 2019/6/4
+     * Time: 15:47
+     */
+    require_once 'vendor/autoload.php';
+    use TencentCloud\Common\Credential;
+    use TencentCloud\Common\Profile\ClientProfile;
+    use TencentCloud\Common\Profile\HttpProfile;
+    use TencentCloud\Common\Exception\TencentCloudSDKException;
+    use TencentCloud\Faceid\V20180301\FaceidClient;
+    use TencentCloud\Faceid\V20180301\Models\IdCardVerificationRequest;
+    try {
+    
+        $cred = new Credential("xxx", "xxx");
+        $httpProfile = new HttpProfile();
+        $httpProfile->setEndpoint("faceid.tencentcloudapi.com");
+    
+        $clientProfile = new ClientProfile();
+        $clientProfile->setHttpProfile($httpProfile);
+        $client = new FaceidClient($cred, "ap-chengdu", $clientProfile);
+    
+        $req = new IdCardVerificationRequest(['verify'=>0]);
+    
+        $params = '{"IdCard":"身份证号","Name":"姓名"}';
+        $req->fromJsonString($params);
+    
+        //调用失败记得修改CurlFactory.php文件
+        $resp = $client->IdCardVerification($req);
+    
+        print_r($resp->toJsonString());
+    }
+    catch(TencentCloudSDKException $e) {
+        echo $e;
+    }  
+    
+    //银行卡核验  
+    use TencentCloud\Common\Credential;
+    use TencentCloud\Common\Profile\ClientProfile;
+    use TencentCloud\Common\Profile\HttpProfile;
+    use TencentCloud\Common\Exception\TencentCloudSDKException;
+    use TencentCloud\Faceid\V20180301\FaceidClient;
+    use TencentCloud\Faceid\V20180301\Models\BankCardVerificationRequest;
+    try {
+    
+        $cred = new Credential("xx", "xxx");
+        $httpProfile = new HttpProfile();
+        $httpProfile->setEndpoint("faceid.tencentcloudapi.com");
+    
+        $clientProfile = new ClientProfile();
+        $clientProfile->setHttpProfile($httpProfile);
+        $client = new FaceidClient($cred, "ap-chengdu", $clientProfile);
+    
+        $req = new BankCardVerificationRequest();
+    
+        $params = '{"IdCard":"身份证","Name":"姓名","BankCard":"银行卡号"}';
+        $req->fromJsonString($params);
+    
+    
+        $resp = $client->BankCardVerification($req);
+    
+        print_r($resp->toJsonString());
+    }
+    catch(TencentCloudSDKException $e) {
+        echo $e;
+    }
+```   
+
+[具体调试源码](https://console.cloud.tencent.com/api/explorer?Product=ticm&Version=2018-11-27&Action=ImageModeration&SignVersion=)   
+
+![api-debug](api.png)  
+
+测试时如果出现错误就把curl 证书给禁用掉！  
+[curl源码修改位置](vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php)    
+
+PS:该SDK由腾迅官方提供，本人自己整理了一份便于使用！     

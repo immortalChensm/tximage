@@ -1,0 +1,19 @@
+{
+    "name": "immportalchensm/tximage",
+    "description": "腾迅图像库",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jackchensm",
+            "email": "1655664358@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "QcloudImage\\": "QcloudImage/"
+        }
+    },
+    "require": {
+        "tencentcloud/tencentcloud-sdk-php": "^3.0"
+    }
+}
